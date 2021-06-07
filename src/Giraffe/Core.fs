@@ -183,6 +183,18 @@ module Core =
             next ctx
 
     /// <summary>
+    /// Sets the Content-Type HTTP header in the response.
+    /// </summary>
+    /// <param name="contentType">The mime type of the response (e.g.: application/json or text/html).</param>
+    /// <param name="next"></param>
+    /// <param name="ctx"></param>
+    /// <returns>A Giraffe <see cref="HttpHandler"/> function which can be composed into a bigger web application.</returns>
+    let setContentType contentType : HttpHandler =
+        fun next ctx ->
+            ctx.SetContentType contentType
+            next ctx
+
+    /// <summary>
     /// Sets the HTTP status code of the response.
     /// </summary>
     /// <param name="statusCode">The status code to be set in the response. For convenience you can use the static <see cref="Microsoft.AspNetCore.Http.StatusCodes"/> class for passing in named status codes instead of using pure int values.</param>
